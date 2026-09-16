@@ -1,17 +1,22 @@
 package com.projeto.task.model;
 
-import java.util.Date;
+
+import java.time.LocalDate;
+
 
 public class Task {
-    Long id;
-    String titulo;
-    String descricao;
+    private Long id;
+    private String titulo;
+    private String descricao;
+    private LocalDate prazo;
+    private boolean concluida;
 
 
     public Task(Long id, String titulo, String descricao) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
+        this.concluida = false;
     }
 
     public Long getId() {
