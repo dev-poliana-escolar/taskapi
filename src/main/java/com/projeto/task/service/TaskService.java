@@ -14,17 +14,30 @@ public class TaskService {
     private final TaskRepository repository;
     private final AtomicLong sequencia = new AtomicLong();
 
-    public TaskService(TaskRepository repository){
+    public TaskService(TaskRepository repository) {
         this.repository = repository;
     }
 
-    public TaskResponseDTO criar(TaskResquestDTO dto){
-        Task tarefa = new Task(sequencia.incrementAndGet(), dto.titulo(),dto.descricao());
+    public TaskResponseDTO criar(TaskResquestDTO dto) {
+        Task tarefa = new Task(sequencia.incrementAndGet(), dto.titulo(), dto.descricao());
         Task salva = repository.salvar(tarefa);
         return toResponseDTO(salva);
     }
 
-    public List<TaskResponseDTO> listarTodas(Task tarefa){
-        return new TaskResponseDTO()
+    private TaskResponseDTO toResponseDTO(Task tarefa) {
+        return new TaskResponseDTO(
+                tarefa.getId(),
+                tarefa.getTitulo(),
+                tarefa.isConcluida(),
+                tarefa.getPrioridade()
+        );
     }
 }
+
+
+
+
+//    public List<TaskResponseDTO> listarTodas(Task tarefa){
+//        return new TaskResponseDTO()
+//    }
+//}

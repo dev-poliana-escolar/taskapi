@@ -8,7 +8,7 @@ public class Task {
     private Long id;
     private String titulo;
     private String descricao;
-    private LocalDate prazo;
+    private String prioridade;
     private boolean concluida;
 
 
@@ -41,5 +41,21 @@ public class Task {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public String getPrioridade() {
+        return prioridade;
+    }
+
+    public void setPrioridade(String prioridade) {
+        this.prioridade = prioridade;
+    }
+
+    public boolean isConcluida() {
+        return concluida;
+    }
+
+    public void setConcluida(boolean concluida) {
+        this.concluida = concluida;
     }
 }
