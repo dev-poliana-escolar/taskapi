@@ -24,5 +24,17 @@ public class UserRepository {
         return Optional.ofNullable(banco.get(id));
     }
 
+    public User atualizar(Long id){
+        Optional<User> user=buscarUserId(id);
+        if(user.isEmpty())
+            return new User();
+        return banco.replace(id, user.get());
+    }
 
+     public User deletar(Long id){
+        Optional<User> user  = buscarUserId(id);
+        if (user.isEmpty())
+            return new User();
+        return banco.remove(id);
+     }
 }
