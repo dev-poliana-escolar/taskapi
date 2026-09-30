@@ -1,61 +1,31 @@
 package com.projeto.task.model;
 
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.time.LocalDate;
-
-
+@Entity
+@Table(name= "tarefas")
+@Getter
+@Setter
 public class Task {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, length = 100)
     private String titulo;
     private String descricao;
-    private String prioridade;
+    @Enumerated(EnumType.STRING)
+    private Prioridade prioridade;
     private boolean concluida;
 
+    public Task(){}
 
-    public Task(Long id, String titulo, String descricao) {
-        this.id = id;
+    public Task(String titulo, String descricao) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.concluida = false;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getPrioridade() {
-        return prioridade;
-    }
-
-    public void setPrioridade(String prioridade) {
-        this.prioridade = prioridade;
-    }
-
-    public boolean isConcluida() {
-        return concluida;
-    }
-
-    public void setConcluida(boolean concluida) {
-        this.concluida = concluida;
+        this.prioridade= Prioridade.BAIXA;
     }
 }
