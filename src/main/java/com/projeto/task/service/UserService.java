@@ -6,6 +6,7 @@ import com.projeto.task.model.User;
 import com.projeto.task.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +19,7 @@ public class UserService {
     }
     //cadastrar
     public UserResponseDTO cadastrar (UserRequestDTO dto){
-        User user = new User(null,dto.nome(),dto.email(),dto.cargo(), dto.tarefas());
+        User user = new User(null,dto.nome(),dto.email(),dto.cargo(), new HashSet<>());
         User salvo = repository.save(user);
         return toResponseDTO(salvo);
     }

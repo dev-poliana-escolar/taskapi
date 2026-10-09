@@ -5,6 +5,5 @@ import java.util.Set;
 
 public record UserRequestDTO(String nome,
                              String email,
-                             String cargo,
-                             Set<Task> tarefas ) {
+                             String cargo) {
 }
