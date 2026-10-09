@@ -18,18 +18,17 @@ public class UserService {
     }
     //cadastrar
     public UserResponseDTO cadastrar (UserRequestDTO dto){
-        User user = new User(dto.nome(), dto.email(), dto.cargo());
-        User salvo = repository.criar(user);
+        User user = new User(null,dto.nome(),dto.email(),dto.cargo(), dto.tarefas());
+        User salvo = repository.save(user);
         return toResponseDTO(salvo);
     }
     //listar
     public List<UserResponseDTO> listarTodos(){
-        return repository.listarTodos()
+        return repository.findAll()
                 .stream()
                 .map(this::toResponseDTO)
                 .toList();
     }
-
 
     private UserResponseDTO toResponseDTO(User user){
         return new UserResponseDTO(user.getId(),

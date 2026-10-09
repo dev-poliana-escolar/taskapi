@@ -17,8 +17,8 @@ public class TaskService {
     }
 
     public TaskResponseDTO criar(TaskResquestDTO dto) {
-        Task tarefa = new Task(dto.titulo(), dto.descricao());
-        Task salva = repository.salvar(tarefa);
+        Task tarefa = new Task(null,dto.titulo(), dto.descricao(),Prioridade.BAIXA, false, dto.usuario());
+        Task salva = repository.save(tarefa);
         return toResponseDTO(salva);
     }
 
@@ -26,8 +26,9 @@ public class TaskService {
         return new TaskResponseDTO(
                 tarefa.getId(),
                 tarefa.getTitulo(),
+                tarefa.getDescricao(),
                 tarefa.isConcluida(),
-                tarefa.getPrioridade().toString()
+                tarefa.getPrioridade()
         );
     }
 }
