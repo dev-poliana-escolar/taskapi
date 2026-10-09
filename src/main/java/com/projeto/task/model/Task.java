@@ -1,13 +1,17 @@
 package com.projeto.task.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name= "tarefas")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,12 +24,7 @@ public class Task {
     private Prioridade prioridade;
     private boolean concluida;
 
-    public Task(){}
-
-    public Task(String titulo, String descricao) {
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.concluida = false;
-        this.prioridade= Prioridade.BAIXA;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    private User usuario;
 }
