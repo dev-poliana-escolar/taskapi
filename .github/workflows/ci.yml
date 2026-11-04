@@ -24,3 +24,4 @@ jobs:
 
       - name: Executar os testes unitários
         run: ./mvnw -B test
+        timeout-minutes: 5
