@@ -1,1 +1,10 @@
 http://localhost:8080/tasks
+###
+POST http://localhost:8080/tasks
+Content-Type: application/json
+
+{
+    "titulo": "Minha Nova Tarefa",
+    "descricao": "Criar requisições usando arquivos .http",
+    "concluida": false
+}
